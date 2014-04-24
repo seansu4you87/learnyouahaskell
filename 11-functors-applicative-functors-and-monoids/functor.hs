@@ -1,4 +1,4 @@
-typeclass Functor f where
+class Functor f where
   fmap :: (a -> b) -> f a -> f b
 
 instance Functor IO where
