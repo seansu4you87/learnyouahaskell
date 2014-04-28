@@ -39,3 +39,11 @@ instance MonadPlus [] where
 guard :: (MonadPlus m) => Bool -> m ()
 guard True = return ()
 guard False = mzero
+
+-- Monad Laws:
+-- Left:          return x >>= f == f x
+-- Right:         m >>= return == m
+-- Associativity: f <=< (g <=< h) == (f <=< g) <=< h
+
+(<=<) :: (Monad m) => (b -> m c) -> (a -> m b) -> (a -> m c)
+f <=< g = (\x -> g x >>= f)
